@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bright Quizzes | منصة اختبارات متقدمة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+
+<nav class="navbar">
+    <div class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></div>
+    <div class="logo-area"><div class="logo-icon"><i class="fas fa-question-circle"></i><i class="fas fa-bolt"></i></div><span class="logo-text">Bright Quizzes</span></div>
+    <div class="lang-toggle" style="visibility: hidden;"></div>
+</nav>
+
+<div class="side-menu" id="sideMenu">
+    <div class="side-menu-inner">
+        <ul class="menu-list">
+            <li data-link="index.html"><i class="fas fa-home"></i> <span>Home</span></li>
+            <li data-link="olympiad.html"><i class="fas fa-trophy"></i> <span>Olympiad Section</span></li>
+            <li data-link="grade9.html"><i class="fas fa-graduation-cap"></i> <span>9th Grade Section</span></li>
+            <li data-link="outstanding.html"><i class="fas fa-star"></i> <span>Outstanding Schools</span></li>
+            <li data-link="random-quiz.html"><i class="fas fa-random"></i> <span>Random Quiz</span></li>
+            <li class="divider"></li>
+            <li data-link="about.html"><i class="fas fa-info-circle"></i> <span>About Bright Quizzes</span></li>
+            <li data-link="team.html"><i class="fas fa-hand-peace"></i> <span>Who We Are</span></li>
+            <li data-link="contact.html"><i class="fas fa-envelope"></i> <span>Contact Us</span></li>
+            <li data-link="rate.html"><i class="fas fa-star-half-alt"></i> <span>Rate the Website</span></li>
+            <li data-link="issue.html"><i class="fas fa-exclamation-triangle"></i> <span>Having an Issue?</span></li>
+        </ul>
+        <div class="theme-panel">
+            <h4 style="color: var(--text-primary);">🎨 الثيمات الفخمة</h4>
+            <div class="theme-option"><label>🌙 Dark Elegant</label><input type="radio" name="theme" value="dark" checked></div>
+            <div class="theme-option"><label>☀️ Light Luxury</label><input type="radio" name="theme" value="light"></div>
+            <div class="theme-option"><label>⚡ Neon Vibrant</label><input type="radio" name="theme" value="neon"></div>
+        </div>
+    </div>
+</div>
+<div class="overlay-bg" id="overlayBg"></div>
+
+<main>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Bright Quizzes – Fast, Dynamic Learning for Future Achievers</h1>
+            <p>Master Olympiad, 9th grade & Outstanding Schools entrance exams. Smart quizzes with instant feedback.</p>
+        </div>
+        <div class="quick-buttons">
+            <a href="olympiad.html" class="quick-btn olympiad-btn">🏆 Olympiad</a>
+            <a href="grade9.html" class="quick-btn grade9-btn">📚 9th Grade</a>
+            <a href="outstanding.html" class="quick-btn outstanding-btn">✨ Outstanding Schools</a>
+        </div>
+    </div>
+
+    <div class="section-card olympiad-card">
+        <div class="section-text"><h2>Syrian Scientific Olympiad</h2><p>Challenging quizzes for juniors, youth & 10th grade divisions. Train like a champion.</p><a href="olympiad.html" class="discover-btn">Discover more →</a></div>
+        <div class="subject-icons-grid"><i class="fas fa-atom"></i><i class="fas fa-dna"></i><i class="fas fa-calculator"></i><i class="fas fa-microchip"></i></div>
+    </div>
+
+    <div class="section-card grade9-card">
+        <div class="section-text"><h2>9th Grade Quick Quizzes</h2><p>All subjects: Math, Physics, Chemistry, Biology, English, Arabic, Islamic, Social Studies.</p><a href="grade9.html" class="discover-btn">Explore →</a></div>
+        <div class="subject-icons-grid"><i class="fas fa-square-root-alt"></i><i class="fas fa-flask"></i><i class="fas fa-microscope"></i><i class="fas fa-book"></i><i class="fas fa-language"></i><i class="fas fa-mosque"></i><i class="fas fa-globe"></i></div>
+    </div>
+
+    <div class="section-card outstanding-card">
+        <div class="section-text"><h2>Outstanding Schools Entrance Exams</h2><p>7th & 10th grade – Biology, Physics, Math, Arabic, English, Mental abilities & more.</p><a href="outstanding.html" class="discover-btn">Challenge →</a></div>
+        <div class="subject-icons-grid"><i class="fas fa-brain"></i><i class="fas fa-chart-line"></i><i class="fas fa-microchip"></i></div>
+    </div>
+
+    <div class="suggestions-strip"><h3>✨ Random quiz suggestions</h3><div class="strip-cards"><a href="quiz.html?mixed=olympiad_juniors" class="strip-card">🏆 Olympiad Physics</a><a href="quiz.html?mixed=grade9" class="strip-card">📘 9th Grade Math</a><a href="quiz.html?mixed=outstanding7" class="strip-card">🌟 Outstanding 7th Biology</a><a href="quiz.html?mixed=olympiad_grade10" class="strip-card">🧪 Chemistry Quiz</a><a href="quiz.html?mixed=full" class="strip-card">🎲 Mixed Random</a></div></div>
+
+    <div class="info-card"><h3>Bright Steps Initiative</h3><p>Volunteer-driven platform empowering Syrian students with free, high-quality assessments.</p><a href="initiative.html" class="discover-btn">Learn more</a></div>
+    <div class="info-card"><h3>Bright Quizzes Team</h3><p>Designed by educators & developers to make exam prep dynamic and accessible.</p><a href="team.html" class="discover-btn">About us</a></div>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-logo"><i class="fas fa-chalkboard-user"></i> Bright Steps Initiative</div>
+    <div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+    <div class="footer-links"><a href="volunteer.html">Volunteer form</a><a href="feedback.html">Feedback form</a></div>
+</footer>
+
+<script src="preloader.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
