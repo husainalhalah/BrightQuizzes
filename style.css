@@ -134,7 +134,7 @@ body {
 .logo-area { display: flex; align-items: center; gap: 8px; }
 .logo-icon { font-size: 28px; color: var(--accent-cyan); }
 .logo-text { font-weight: 800; font-size: 22px; background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-
+<img src="b_20260323_000920_٠٠٠٣.png" alt="صورة" style="margin-left: auto; height: 40px;">
 /* Side menu */
 .side-menu {
     position: fixed;
