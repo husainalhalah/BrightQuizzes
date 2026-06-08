@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bright Quizzes | Syrian Scientific Olympiad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* تنسيقات خاصة بصفحة الأولمبياد */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .category-card {
+            background: var(--card-bg);
+            border-radius: 32px;
+            padding: 28px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-cyan);
+            box-shadow: var(--shadow-glow);
+        }
+        .category-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: var(--accent-cyan);
+        }
+        .category-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .division-card {
+            background: var(--card-bg);
+            border-radius: 28px;
+            padding: 24px;
+            margin-bottom: 28px;
+            border-left: 6px solid var(--accent-cyan);
+            transition: 0.2s;
+        }
+        .division-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-glow);
+        }
+        .quiz-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .quiz-btn {
+            background: rgba(34,211,238,0.1);
+            border: 1px solid var(--accent-cyan);
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: var(--accent-cyan);
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+        .quiz-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            transform: translateY(-2px);
+        }
+        .models-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .model-card {
+            background: linear-gradient(135deg, var(--card-bg), rgba(34,211,238,0.05));
+            border-radius: 32px;
+            padding: 32px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--border-light);
+            width: 220px;
+        }
+        .model-card.random {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-pink));
+            border: none;
+        }
+        .model-card.random .model-name {
+            color: #000;
+        }
+        .model-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-glow);
+        }
+        .model-icon {
+            font-size: 56px;
+            color: var(--accent-cyan);
+            margin-bottom: 16px;
+        }
+        .model-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .back-button {
+            background: transparent;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 10px 28px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 20px;
+            display: inline-block;
+            font-weight: 500;
+        }
+        .back-button:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            transform: translateX(-5px);
+        }
+        .screen {
+            display: none;
+        }
+        .screen.active-screen {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .model-card { width: 180px; padding: 20px; }
+            .model-icon { font-size: 42px; }
+            .model-name { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body class="theme-dark">
+
+<!-- شريط التنقل العلوي -->
+<nav class="navbar">
+    <div class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></div>
+    <div class="logo-area">
+        <div class="logo-icon"><i class="fas fa-question-circle"></i><i class="fas fa-bolt"></i></div>
+        <span class="logo-text">Bright Quizzes</span>
+    </div>
+    <div class="lang-toggle" style="visibility: hidden;"></div>
+</nav>
+
+<!-- القائمة الجانبية الكاملة -->
+<div class="side-menu" id="sideMenu">
+    <div class="side-menu-inner">
+        <ul class="menu-list">
+            <li data-link="index.html"><i class="fas fa-home"></i> <span>Home</span></li>
+            <li data-link="olympiad.html"><i class="fas fa-trophy"></i> <span>Olympiad Section</span></li>
+            <li data-link="grade9.html"><i class="fas fa-graduation-cap"></i> <span>9th Grade Section</span></li>
+            <li data-link="outstanding.html"><i class="fas fa-star"></i> <span>Outstanding Schools</span></li>
+            <li data-link="random-quiz.html"><i class="fas fa-random"></i> <span>Random Quiz</span></li>
+            <li class="divider"></li>
+            <li data-link="about.html"><i class="fas fa-info-circle"></i> <span>About Bright Quizzes</span></li>
+            <li data-link="team.html"><i class="fas fa-hand-peace"></i> <span>Who We Are</span></li>
+            <li data-link="contact.html"><i class="fas fa-envelope"></i> <span>Contact Us</span></li>
+            <li data-link="rate.html"><i class="fas fa-star-half-alt"></i> <span>Rate the Website</span></li>
+            <li data-link="issue.html"><i class="fas fa-exclamation-triangle"></i> <span>Having an Issue?</span></li>
+        </ul>
+        <div class="theme-panel">
+            <h4 style="color: var(--text-primary);">🎨 الثيمات الفخمة</h4>
+            <div class="theme-option"><label>🌙 Dark Elegant</label><input type="radio" name="theme" value="dark" checked></div>
+            <div class="theme-option"><label>☀️ Light Luxury</label><input type="radio" name="theme" value="light"></div>
+            <div class="theme-option"><label>⚡ Neon Vibrant</label><input type="radio" name="theme" value="neon"></div>
+        </div>
+    </div>
+</div>
+<div class="overlay-bg" id="overlayBg"></div>
+
+<!-- المحتوى الرئيسي -->
+<main style="padding-top: 100px;">
+    <!-- شاشة اختيار المرحلة -->
+    <div id="screen-categories" class="screen active-screen">
+        <div class="hero-section" style="background: var(--grad-olympiad); margin-bottom: 20px;">
+            <div class="hero-content">
+                <h1>🏆 Syrian Scientific Olympiad</h1>
+                <p>اختر مرحلتك المناسبة، وابدأ التحدي. كل مادة تحتوي على 3 نماذج ونموذج عشوائي.</p>
+            </div>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card" data-category="juniors">
+                <div class="category-icon"><i class="fas fa-child"></i></div>
+                <h2>Olympiad Juniors</h2>
+                <p>العلوم العامة والرياضيات</p>
+            </div>
+            <div class="category-card" data-category="youth">
+                <div class="category-icon"><i class="fas fa-users"></i></div>
+                <h2>Olympiad Youth</h2>
+                <p>أحياء، فيزياء وكيمياء، رياضيات</p>
+            </div>
+            <div class="category-card" data-category="grade10">
+                <div class="category-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h2>10th Grade Olympiad</h2>
+                <p>أحياء، معلوماتية، فيزياء، كيمياء، رياضيات</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- شاشة المواد -->
+    <div id="screen-subjects" class="screen">
+        <div class="hero-section" style="background: var(--grad-olympiad);">
+            <div class="hero-content">
+                <h1 id="subjectsTitle"></h1>
+                <p id="subjectsDesc">اختر المادة لعرض النماذج المتاحة</p>
+            </div>
+        </div>
+        <div id="subjectsContainer"></div>
+        <button class="back-button" id="backToCategories">← العودة إلى المراحل</button>
+    </div>
+
+    <!-- شاشة النماذج -->
+    <div id="screen-models" class="screen">
+        <div class="hero-section" style="background: var(--grad-olympiad);">
+            <div class="hero-content">
+                <h1 id="modelsTitle"></h1>
+                <p id="modelsDesc">اختر النموذج المناسب. النموذج العشوائي يجمع كل الأسئلة.</p>
+            </div>
+        </div>
+        <div id="modelsContainer" class="models-grid"></div>
+        <button class="back-button" id="backToSubjects">← العودة إلى المواد</button>
+    </div>
+</main>
+
+<!-- التذييل -->
+<footer class="main-footer">
+    <div class="footer-logo"><i class="fas fa-chalkboard-user"></i> Bright Steps Initiative</div>
+    <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <div class="footer-links">
+        <a href="volunteer.html">Volunteer form</a>
+        <a href="feedback.html">Feedback form</a>
+    </div>
+</footer>
+
+<script src="preloader.js"></script>
+<script src="script.js"></script>
+<script>
+    // بيانات المواد لكل مرحلة
+    const subjectsData = {
+        juniors: {
+            title: "🏅 Olympiad Juniors",
+            subjects: [
+                { id: "science", name: "🔬 General Science", desc: "أسئلة في الفيزياء والكيمياء والأحياء" },
+                { id: "math", name: "📐 Mathematics", desc: "جبر، هندسة، منطق ونظرية أعداد" }
+            ]
+        },
+        youth: {
+            title: "⚡ Olympiad Youth",
+            subjects: [
+                { id: "biology", name: "🧬 Biology", desc: "بيولوجيا خلوية، وراثة، فسيولوجيا" },
+                { id: "physics", name: "⚛️ Physics & Chemistry", desc: "ميكانيكا، ديناميكا حرارية، كيمياء فيزيائية" },
+                { id: "math", name: "📊 Mathematics", desc: "تفاضل وتكامل، توافيق، نظرية الأعداد" }
+            ]
+        },
+        grade10: {
+            title: "🎓 10th Grade Olympiad",
+            subjects: [
+                { id: "biology", name: "🔬 Biology", desc: "بيولوجيا جزيئية، بيئة متقدمة" },
+                { id: "informatics", name: "💻 Informatics", desc: "خوارزميات، هياكل بيانات، منطق برمجي" },
+                { id: "physics", name: "⚡ Physics", desc: "كهرباء، مغناطيسية، فيزياء حديثة" },
+                { id: "chemistry", name: "🧪 Chemistry", desc: "حركية كيميائية، اتزان، مطيافية" },
+                { id: "math", name: "📈 Mathematics", desc: "معادلات تفاضلية، جبر خطي، احتمالات" }
+            ]
+        }
+    };
+
+    // ربط اسم المرحلة بالـ category المستخدم في قاعدة البيانات
+    const categoryMap = {
+        juniors: "olympiad_juniors",
+        youth: "olympiad_youth",
+        grade10: "olympiad_grade10"
+    };
+
+    let currentCategory = null;
+    let currentSubject = null;
+
+    const screens = {
+        categories: document.getElementById('screen-categories'),
+        subjects: document.getElementById('screen-subjects'),
+        models: document.getElementById('screen-models')
+    };
+
+    function showScreen(screenName) {
+        Object.keys(screens).forEach(k => screens[k].classList.remove('active-screen'));
+        screens[screenName].classList.add('active-screen');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function loadSubjects(categoryKey) {
+        currentCategory = categoryKey;
+        const data = subjectsData[categoryKey];
+        document.getElementById('subjectsTitle').innerText = data.title;
+        document.getElementById('subjectsDesc').innerText = "اختر المادة لعرض النماذج";
+        const container = document.getElementById('subjectsContainer');
+        container.innerHTML = '';
+        data.subjects.forEach(sub => {
+            const card = document.createElement('div');
+            card.className = 'division-card';
+            card.innerHTML = `
+                <h3>${sub.name}</h3>
+                <p>${sub.desc}</p>
+                <div class="quiz-buttons">
+                    <button class="quiz-btn" data-subject="${sub.id}">اختر النماذج →</button>
+                </div>
+            `;
+            card.querySelector('.quiz-btn').addEventListener('click', () => {
+                currentSubject = sub.id;
+                loadModels(sub.name);
+            });
+            container.appendChild(card);
+        });
+        showScreen('subjects');
+    }
+
+    function loadModels(subjectDisplayName) {
+        const fullCategory = categoryMap[currentCategory];
+        document.getElementById('modelsTitle').innerHTML = `${subjectDisplayName} - ${subjectsData[currentCategory].title}`;
+        const container = document.getElementById('modelsContainer');
+        container.innerHTML = '';
+        const models = [
+            { type: 'model1', name: 'نموذج 1', icon: 'fas fa-file-alt' },
+            { type: 'model2', name: 'نموذج 2', icon: 'fas fa-file-alt' },
+            { type: 'model3', name: 'نموذج 3', icon: 'fas fa-file-alt' },
+            { type: 'random', name: 'نموذج عشوائي', icon: 'fas fa-random' }
+        ];
+        models.forEach(model => {
+            const card = document.createElement('div');
+            card.className = `model-card ${model.type === 'random' ? 'random' : ''}`;
+            card.innerHTML = `
+                <div class="model-icon"><i class="${model.icon}"></i></div>
+                <div class="model-name">${model.name}</div>
+            `;
+            const quizId = `${fullCategory}_${currentSubject}_${model.type}`;
+            card.addEventListener('click', () => {
+                window.location.href = `quiz.html?quiz=${quizId}`;
+            });
+            container.appendChild(card);
+        });
+        showScreen('models');
+    }
+
+    // ربط أحداث بطاقات المراحل
+    document.querySelectorAll('.category-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const cat = card.getAttribute('data-category');
+            if (cat) loadSubjects(cat);
+        });
+    });
+
+    // أزرار الرجوع
+    document.getElementById('backToCategories').addEventListener('click', () => showScreen('categories'));
+    document.getElementById('backToSubjects').addEventListener('click', () => {
+        if (currentCategory) loadSubjects(currentCategory);
+    });
+
+    // دعم الانتقال المباشر من الاقتراحات العشوائية (معاملات في الرابط)
+    (function handleUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        const subjectParam = urlParams.get('subject');
+        if (categoryParam && subjectsData[categoryParam] && subjectParam) {
+            loadSubjects(categoryParam);
+            setTimeout(() => {
+                const subjectExists = subjectsData[categoryParam].subjects.find(s => s.id === subjectParam);
+                if (subjectExists) {
+                    currentSubject = subjectParam;
+                    loadModels(subjectExists.name);
+                }
+            }, 300);
+        }
+    })();
+</script>
+</body>
+</html>
