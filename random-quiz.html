@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Bright Quizzes | اختبار عشوائي مختلط</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .random-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      margin: 40px 0 60px;
+    }
+    .random-card {
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 28px;
+      text-align: center;
+      width: 260px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: 1px solid var(--border-light);
+    }
+    .random-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-cyan);
+      box-shadow: var(--shadow-glow);
+    }
+    .random-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+      color: var(--accent-cyan);
+    }
+    .random-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+    .random-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    @media (max-width: 768px) {
+      .random-card { width: 220px; padding: 20px; }
+      .random-icon { font-size: 44px; }
+    }
+  </style>
+</head>
+<body class="theme-dark">
+
+<nav class="navbar">
+  <div class="hamburger-btn" id="hamburgerBtn"><span></span><span></span><span></span></div>
+  <div class="logo-area">
+    <div class="logo-icon"><i class="fas fa-question-circle"></i><i class="fas fa-bolt"></i></div>
+    <span class="logo-text">Bright Quizzes</span>
+  </div>
+  <div class="lang-toggle" style="visibility: hidden;"></div>
+</nav>
+
+<div class="side-menu" id="sideMenu">
+  <div class="side-menu-inner">
+    <ul class="menu-list">
+      <li data-link="index.html"><i class="fas fa-home"></i> <span>Home</span></li>
+      <li data-link="olympiad.html"><i class="fas fa-trophy"></i> <span>Olympiad Section</span></li>
+      <li data-link="grade9.html"><i class="fas fa-graduation-cap"></i> <span>9th Grade Section</span></li>
+      <li data-link="outstanding.html"><i class="fas fa-star"></i> <span>Outstanding Schools</span></li>
+      <li data-link="random-quiz.html"><i class="fas fa-random"></i> <span>Random Quiz</span></li>
+      <li class="divider"></li>
+      <li data-link="about.html"><i class="fas fa-info-circle"></i> <span>About Bright Quizzes</span></li>
+      <li data-link="team.html"><i class="fas fa-hand-peace"></i> <span>Who We Are</span></li>
+      <li data-link="contact.html"><i class="fas fa-envelope"></i> <span>Contact Us</span></li>
+      <li data-link="rate.html"><i class="fas fa-star-half-alt"></i> <span>Rate the Website</span></li>
+      <li data-link="issue.html"><i class="fas fa-exclamation-triangle"></i> <span>Having an Issue?</span></li>
+    </ul>
+    <div class="theme-panel">
+      <h4 style="color: var(--text-primary);">🎨 الثيمات الفخمة</h4>
+      <div class="theme-option"><label>🌙 Dark Elegant</label><input type="radio" name="theme" value="dark" checked></div>
+      <div class="theme-option"><label>☀️ Light Luxury</label><input type="radio" name="theme" value="light"></div>
+      <div class="theme-option"><label>⚡ Neon Vibrant</label><input type="radio" name="theme" value="neon"></div>
+    </div>
+  </div>
+</div>
+<div class="overlay-bg" id="overlayBg"></div>
+
+<main style="padding-top: 100px;">
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>🎲 اختبار عشوائي مختلط</h1>
+      <p>اختر التصنيف المناسب: سيتم جمع أسئلة عشوائية من جميع المواد التابعة لهذا القسم.</p>
+    </div>
+  </div>
+
+  <div class="random-options">
+    <div class="random-card" data-mixed="olympiad_juniors">
+      <div class="random-icon"><i class="fas fa-child"></i></div>
+      <h3>أولمبياد المبتدئين</h3>
+      <p>علوم عامة + رياضيات</p>
+    </div>
+    <div class="random-card" data-mixed="olympiad_youth">
+      <div class="random-icon"><i class="fas fa-users"></i></div>
+      <h3>أولمبياد الشباب</h3>
+      <p>أحياء، فيزياء وكيمياء، رياضيات</p>
+    </div>
+    <div class="random-card" data-mixed="olympiad_grade10">
+      <div class="random-icon"><i class="fas fa-graduation-cap"></i></div>
+      <h3>أولمبياد الصف العاشر</h3>
+      <p>أحياء، معلوماتية، فيزياء، كيمياء، رياضيات</p>
+    </div>
+    <div class="random-card" data-mixed="grade9">
+      <div class="random-icon"><i class="fas fa-book"></i></div>
+      <h3>الصف التاسع</h3>
+      <p>جميع المواد (8 مواد)</p>
+    </div>
+    <div class="random-card" data-mixed="outstanding7">
+      <div class="random-icon"><i class="fas fa-star"></i></div>
+      <h3>متفوقين - الصف السابع</h3>
+      <p>8 مواد تأسيسية</p>
+    </div>
+    <div class="random-card" data-mixed="outstanding10">
+      <div class="random-icon"><i class="fas fa-star"></i></div>
+      <h3>متفوقين - الصف العاشر</h3>
+      <p>8 مواد متقدمة</p>
+    </div>
+    <div class="random-card" data-mixed="full">
+      <div class="random-icon"><i class="fas fa-globe"></i></div>
+      <h3>مختلط كامل</h3>
+      <p>جميع أسئلة المنصة</p>
+    </div>
+  </div>
+</main>
+
+<footer class="main-footer">
+  <div class="footer-logo"><i class="fas fa-chalkboard-user"></i> Bright Steps Initiative</div>
+  <div class="social-links">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <div class="footer-links">
+    <a href="volunteer.html">Volunteer form</a>
+    <a href="feedback.html">Feedback form</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  document.querySelectorAll('.random-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const mixedValue = card.getAttribute('data-mixed');
+      if (mixedValue) {
+        window.location.href = `quiz.html?mixed=${mixedValue}`;
+      }
+    });
+  });
+</script>
+</body>
+</html>
