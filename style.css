@@ -47,7 +47,7 @@ body.theme-light {
     --bg-side: #FFFFFF;
     --text-primary: #111827;
     --text-secondary: #374151;
-    --text-muted: #6B7280;
+    ---muted: #6B7280;
     --border-light: rgba(0, 0, 0, 0.1);
     --card-bg: #FFFFFF;
     --card-hover: #F9FAFB;
@@ -112,7 +112,7 @@ body {
 .hamburger-btn {
     width: 44px;
     height: 40px;
-    background: rgba(31, 41, 55, 0.7);
+    background: linear-gradient(90deg, #C084FC, #8B5CF6);
     border-radius: 9999px;
     display: flex;
     flex-direction: column;
@@ -133,7 +133,14 @@ body {
 .hamburger-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 .logo-area { display: flex; align-items: center; gap: 8px; }
 .logo-icon { font-size: 28px; color: var(--accent-cyan); }
-.logo-text { font-weight: 800; font-size: 22px; background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.logo-text {
+    font-weight: 800;
+    font-size: 25px;
+    background: linear-gradient(50deg, #C084FC,#8B5CF6,#3B5CF6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 
 /* Side menu */
 .side-menu {
@@ -340,4 +347,90 @@ main { padding: 100px 5% 60px; max-width: 1400px; margin: 0 auto; width: 100%; }
 .strip-card:hover {
     transform: translateX(5px);
     background: var(--card-hover);
-                     }
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* أو استخدم flex-start */
+}
+
+.nav-right-image {
+    height: 45px;          /* حجم مناسب */
+    width: auto;
+    margin-left: auto;     /* تدفع الصورة إلى أقصى اليمين */
+}
+/* جعل الفوتر يستخدم Flexbox لصف واحد */
+.main-footer {
+    display: flex;
+    align-items: center;      /* توسيط عمودي */
+    justify-content: space-between; /* توزيع العناصر: الأول والثالث على الأطراف، الوسط في المنتصف */
+    flex-wrap: wrap;          /* ليتناسب مع الشاشات الصغيرة */
+    gap: 20px;
+    text-align: center;
+}
+
+/* العنصر الأوسط (اللوجو) */
+.footer-center-logo {
+    flex: 0 0 auto;
+}
+
+.footer-logo-img {
+    height: 40px;       /* حجم مناسب */
+    width: auto;
+    display: block;
+}
+
+/* تنظيم بقية العناصر */
+.footer-logo, .social-links, .footer-links {
+    flex: 0 0 auto;
+}
+
+/* للشاشات الصغيرة: اجعل العناصر في عمود واللوجو في المنتصف */
+@media (max-width: 768px) {
+    .main-footer {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+/* تنسيق روابط أيقونات التواصل */
+.social-links a {
+    color: var(--text-secondary); /* أو أي لون تفضله */
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    margin: 0 8px;
+    display: inline-block;
+}
+
+/* تأثير التمرير على الأيقونات */
+.social-links a:hover {
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+
+/* ألوان خاصة لكل منصة عند التمرير (اختياري) */
+.social-links a[href*="instagram"]:hover { color: #E4405F; }
+.social-links a[href*="facebook"]:hover { color: #1877F2; }
+.social-links a[href*="whatsapp"]:hover { color: #25D366; }
+
+/* تنسيق أزرار الفوتر السفلية */
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin: 0 12px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+@media (max-width: 700px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+                                     }
