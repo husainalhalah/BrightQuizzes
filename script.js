@@ -38,16 +38,19 @@
         overlay._listener = overlayHandler;
 
         document.querySelectorAll('.menu-list li[data-link]').forEach(li => {
-            li.removeEventListener('click', li._listener);
-            const handler = (e) => {
-                e.stopPropagation();
-                const link = li.getAttribute('data-link');
-                if (link) window.location.href = link;
-                closeMenu();
-            };
-            li.addEventListener('click', handler);
-            li._listener = handler;
-        });
+    li.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const link = li.getAttribute('data-link');
+        if (link) {
+            if (link.startsWith('mailto:')) {
+                window.open(link, '_blank'); // أو window.location.href = link;
+            } else {
+                window.location.href = link;
+            }
+        }
+        closeMenu();
+    });
+});
     }
 
     // ===================== الثيمات =====================
@@ -81,7 +84,7 @@
 
         const allSuggestions = [
             { name: "🏆 أولمبياد - فيزياء مبتدئين", link: "olympiad.html?category=juniors&subject=science" },
-            { name: "🧪 أولمبياد - كيمياء شباب", link: "olympiad.html?category=youth&subject=chemistry" },
+            { name: "🧪 أولمبياد فيزياء وكيمياء-يافعين", link: "olympiad.html?category=youth&subject=physics" },
             { name: "💻 أولمبياد - معلوماتية عاشر", link: "olympiad.html?category=grade10&subject=informatics" },
             { name: "📐 رياضيات - الصف التاسع", link: "grade9.html?subject=math" },
             { name: "🧬 أحياء - متفوقين سابع", link: "outstanding.html?grade=7&subject=biology" },
@@ -126,4 +129,25 @@
         initThemes();
         initRandomSuggestions();
     }
+    // ===================== دعم data-link في أي عنصر بالصفحة =====================
+function initDataLinks() {
+    document.querySelectorAll('[data-link]').forEach(el => {
+        if (el.closest('.side-menu')) return; // تجنب عناصر القائمة الجانبية (تعامل معها بشكل منفصل)
+        if (el._dataLinkHandler) el.removeEventListener('click', el._dataLinkHandler);
+        const handler = (e) => {
+            e.stopPropagation();
+            const link = el.getAttribute('data-link');
+            if (link) {
+                if (link.startsWith('mailto:')) {
+                    window.location.href = link;
+                } else {
+                    window.location.href = link;
+                }
+            }
+        };
+        el.addEventListener('click', handler);
+        el._dataLinkHandler = handler;
+        if (window.getComputedStyle(el).cursor === 'auto') el.style.cursor = 'pointer';
+    });
+}
 })();
